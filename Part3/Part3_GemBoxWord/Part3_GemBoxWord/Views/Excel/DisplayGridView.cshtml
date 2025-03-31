@@ -1,0 +1,40 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewData["Title"] = "Excel 範例 3 - GridView 顯示";
+}
+
+<h2>Excel 範例 3 - GridView 顯示</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Productid</th>
+            <th>ProductName</th>
+            <th>UnitPrice</th>
+            <th>UnitsInStock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Rows.Count > 0)
+        {
+            foreach (System.Data.DataRow row in Model.Rows)
+            {
+                <tr>
+                    <td>@row["Productid"]</td>
+                    <td>@row["ProductName"]</td>
+                    <td>@row["UnitPrice"]</td>
+                    <td>@row["UnitsInStock"]</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">無資料可顯示</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-primary">返回</a>

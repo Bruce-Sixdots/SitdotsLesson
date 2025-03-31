@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Part3_GemBoxWord.props" />
+</Project>

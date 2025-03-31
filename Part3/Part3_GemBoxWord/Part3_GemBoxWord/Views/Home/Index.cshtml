@@ -1,0 +1,103 @@
+﻿@model GemBoxDemo.Controllers.EventModel
+@{
+    ViewData["Title"] = "GemBox.Document 範例";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-primary">📄 GemBox.Document 範例</h1>
+    <p class="text-muted">選擇範例以生成文件或 Excel</p>
+
+    <div class="row">
+        <!-- 文檔範例 -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">📄 文檔範例</div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="d-grid gap-2">
+                            <button type="submit" asp-action="Example1" class="btn btn-outline-primary">範例 1: 簡單文件</button>
+                            <button type="submit" asp-action="Example2" class="btn btn-outline-primary">範例 2: 帶輸入的文件</button>
+                            <button type="submit" asp-action="Example3" class="btn btn-outline-primary">範例 3: 資料庫表格</button>
+                            <button type="submit" asp-action="Example4" class="btn btn-outline-primary">範例 4: 圖片文件</button>
+                            <button type="submit" asp-action="Example5" class="btn btn-outline-primary">範例 5: 產品表格</button>
+                            <button type="submit" asp-action="Example6" class="btn btn-outline-primary">範例 6: 履歷模板</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Excel 範例 -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">📊 Excel 範例</div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <form asp-controller="Excel" asp-action="Example4" method="post">
+                            <button type="submit" class="btn btn-success">Excel 範例 1: 動態生成 Excel 生成test1</button>
+                        </form>
+                        <form asp-controller="Excel" asp-action="Example2" method="post">
+                            <button type="submit" class="btn btn-success">Excel 範例 2: 讀取test1 Excel 並顯示</button>
+                        </form>
+                        <form asp-controller="Excel" asp-action="Example1" method="post">
+                            <button type="submit" class="btn btn-success">Excel 範例 3: 從資料庫寫入 Excel 生成 test3</button>
+                        </form>
+                        <form asp-controller="Excel" asp-action="Example3" method="post">
+                            <button type="submit" class="btn btn-success">Excel 範例 4: 從 Excel 提取資料並顯示在 GridView</button>
+                        </form>
+  
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 主辦人與日期 -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-info text-white">🗓️ 活動設定</div>
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">主辦人</label>
+                    <input type="text" asp-for="Host" class="form-control" placeholder="請輸入主辦人名稱" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">日期</label>
+                    <input type="text" asp-for="Date" class="form-control" placeholder="yyyy/MM/dd" />
+                </div>
+                <button type="submit" class="btn btn-info">儲存設定</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 訊息提示 -->
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-info">
+            @TempData["Message"]
+        </div>
+    }
+
+    <!-- 生成的文件 -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white">🗃️ 生成的文件</div>
+        <div class="card-body">
+            @if (ViewBag.GeneratedFiles != null && ViewBag.GeneratedFiles.Count > 0)
+            {
+                <ul class="list-group">
+                    @foreach (var file in ViewBag.GeneratedFiles)
+                    {
+                        <li class="list-group-item">
+                            <a href="/Output/@file" download="@file">@file</a>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="text-muted">尚無生成的文件</p>
+            }
+        </div>
+    </div>
+</div>

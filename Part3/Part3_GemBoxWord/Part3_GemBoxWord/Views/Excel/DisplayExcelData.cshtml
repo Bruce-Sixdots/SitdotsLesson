@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Excel 範例 2 - 顯示資料";
+    var results = ViewBag.Results as List<string>;
+    var b1Value = ViewBag.B1Value as string;
+}
+
+<h2>Excel 範例 2 - 顯示資料</h2>
+
+<h3>表格資料</h3>
+@if (results != null && results.Any())
+{
+    foreach (var result in results)
+    {
+        <p>@result</p>
+    }
+}
+else
+{
+    <p>無資料可顯示</p>
+}
+
+<h3>B1 單元格值</h3>
+<p>@b1Value</p>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-primary">返回</a>

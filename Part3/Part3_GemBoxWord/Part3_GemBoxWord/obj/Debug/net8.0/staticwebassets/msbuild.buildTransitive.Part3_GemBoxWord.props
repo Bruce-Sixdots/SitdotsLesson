@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Part3_GemBoxWord.props" />
+</Project>

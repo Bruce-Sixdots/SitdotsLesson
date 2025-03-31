@@ -1,0 +1,189 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|c:\\users\\wang3\\desktop\\part3\\part3_gemboxword\\part3_gemboxword\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|solutionrelative:part3_gemboxword\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|c:\\users\\wang3\\desktop\\part3\\part3_gemboxword\\part3_gemboxword\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|solutionrelative:part3_gemboxword\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|c:\\users\\wang3\\desktop\\part3\\part3_gemboxword\\part3_gemboxword\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|solutionrelative:part3_gemboxword\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|c:\\users\\wang3\\desktop\\part3\\part3_gemboxword\\part3_gemboxword\\controllers\\excelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|solutionrelative:part3_gemboxword\\controllers\\excelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|c:\\users\\wang3\\desktop\\part3\\part3_gemboxword\\part3_gemboxword\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|solutionrelative:part3_gemboxword\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|c:\\users\\wang3\\desktop\\part3\\part3_gemboxword\\part3_gemboxword\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|solutionrelative:part3_gemboxword\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|c:\\users\\wang3\\desktop\\part3\\part3_gemboxword\\part3_gemboxword\\views\\excel\\displaygridview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|solutionrelative:part3_gemboxword\\views\\excel\\displaygridview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|c:\\users\\wang3\\desktop\\part3\\part3_gemboxword\\part3_gemboxword\\views\\excel\\displayexceldata.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{30DEA306-AD17-43C2-A6F0-4897FCD58C69}|Part3_GemBoxWord\\Part3_GemBoxWord.csproj|solutionrelative:part3_gemboxword\\views\\excel\\displayexceldata.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 14,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\appsettings.json",
+              "RelativeDocumentMoniker": "Part3_GemBoxWord\\appsettings.json",
+              "ToolTip": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\appsettings.json",
+              "RelativeToolTip": "Part3_GemBoxWord\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-31T09:20:02.23Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DisplayGridView.cshtml",
+              "DocumentMoniker": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Views\\Excel\\DisplayGridView.cshtml",
+              "RelativeDocumentMoniker": "Part3_GemBoxWord\\Views\\Excel\\DisplayGridView.cshtml",
+              "ToolTip": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Views\\Excel\\DisplayGridView.cshtml",
+              "RelativeToolTip": "Part3_GemBoxWord\\Views\\Excel\\DisplayGridView.cshtml",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAuwCcAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-31T08:40:20.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DisplayExcelData.cshtml",
+              "DocumentMoniker": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Views\\Excel\\DisplayExcelData.cshtml",
+              "RelativeDocumentMoniker": "Part3_GemBoxWord\\Views\\Excel\\DisplayExcelData.cshtml",
+              "ToolTip": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Views\\Excel\\DisplayExcelData.cshtml",
+              "RelativeToolTip": "Part3_GemBoxWord\\Views\\Excel\\DisplayExcelData.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-31T08:40:02.898Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ExcelController.cs",
+              "DocumentMoniker": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Controllers\\ExcelController.cs",
+              "RelativeDocumentMoniker": "Part3_GemBoxWord\\Controllers\\ExcelController.cs",
+              "ToolTip": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Controllers\\ExcelController.cs",
+              "RelativeToolTip": "Part3_GemBoxWord\\Controllers\\ExcelController.cs",
+              "ViewState": "AQIAAKMAAAAAAAAAAAAwwL8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T08:36:34.768Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Part3_GemBoxWord\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Part3_GemBoxWord\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAAFsAAABOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-31T07:23:07.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Part3_GemBoxWord\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Part3_GemBoxWord\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAoAAAAAAAAAAIAxwBcAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-31T07:22:45.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Part3_GemBoxWord\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Part3_GemBoxWord\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAuwCEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T07:22:21.881Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Program.cs",
+              "RelativeDocumentMoniker": "Part3_GemBoxWord\\Program.cs",
+              "ToolTip": "C:\\Users\\wang3\\Desktop\\Part3\\Part3_GemBoxWord\\Part3_GemBoxWord\\Program.cs",
+              "RelativeToolTip": "Part3_GemBoxWord\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T07:17:54.098Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
