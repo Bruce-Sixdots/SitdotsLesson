@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>jsGrid 範例</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #ccc;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>jsGrid 範例</h1>
+    <p>點擊下方標籤切換不同範例</p>
+
+    <!-- 標籤按鈕 -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">範例 1: 基本表格</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab2')">範例 2: 自訂行渲染</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab3')">範例 3: 編輯與分頁</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab4')">範例 4: 簡單表格</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab5')">範例 5: 分頁載入</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab6')">範例 6: 基本編輯</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab7')">範例 7: 中文本地化</button>
+    </div>
+
+    <!-- 範例 1: 基本表格 -->
+    <div id="Tab1" class="tabcontent">
+        <h2>範例 1: 基本表格</h2>
+        <div id="jsGrid1"></div>
+    </div>
+
+    <!-- 範例 2: 自訂行渲染 -->
+    <div id="Tab2" class="tabcontent">
+        <h2>範例 2: 自訂行渲染</h2>
+        <div id="jsGrid2"></div>
+    </div>
+
+    <!-- 範例 3: 編輯與分頁 -->
+    <div id="Tab3" class="tabcontent">
+        <h2>範例 3: 編輯與分頁</h2>
+        <div id="jsGrid3"></div>
+    </div>
+
+    <!-- 範例 4: 簡單表格 -->
+    <div id="Tab4" class="tabcontent">
+        <h2>範例 4: 簡單表格</h2>
+        <div id="jsGrid4"></div>
+    </div>
+
+    <!-- 範例 5: 分頁載入 -->
+    <div id="Tab5" class="tabcontent">
+        <h2>範例 5: 分頁載入</h2>
+        <div id="jsGrid5"></div>
+    </div>
+
+    <!-- 範例 6: 基本編輯 -->
+    <div id="Tab6" class="tabcontent">
+        <h2>範例 6: 基本編輯</h2>
+        <div id="jsGrid6"></div>
+    </div>
+
+    <!-- 範例 7: 中文本地化 -->
+    <div id="Tab7" class="tabcontent">
+        <h2>範例 7: 中文本地化</h2>
+        <div id="jsGrid7"></div>
+    </div>
+
+    <script>
+        // myData.js 資料
+        var myProducts = [
+            { "Name": "金士頓 120GB 2.5吋 SATAⅢ固態硬碟", "Price": 1485, "Category": 1, "Desc": "讀取550MB/s;寫入350MB/s ", "CreditCard": false },
+            { "Name": "美光MX300 275GB SATAⅢ固態硬碟", "Price": 2899, "Category": 1, "Desc": "連續讀取530MB/s /連讀寫入500MB/s ", "CreditCard": false },
+            { "Name": "SanDisk SSD Plus 240GB SATAⅢ固態硬碟", "Price": 2488, "Category": 1, "Desc": "讀530M/寫440M/TLC/三年保 ", "CreditCard": true },
+            { "Name": "NTEL 盒裝Core i3-7350K", "Price": 6390, "Category": 2, "Desc": "時脈速度4.20 GHz ,核心/執行緒 2 / 4 ", "CreditCard": true },
+            { "Name": "Intel Core i7 7700K 中央處理器", "Price": 11500, "Category": 2, "Desc": "核心/執行緒4 / 8 , 時脈速度4.20-4.50 GHz ", "CreditCard": true },
+            { "Name": "微星 MSI GTX 1070 Classic Gaming 顯示卡", "Price": 14590, "Category": 3, "Desc": "顯示晶片 NVIDIA GeForce GTX 1070 ,記憶體 8GB GDDR5 ", "CreditCard": false },
+            { "Name": "華碩 STRIX-RX480-O8G-GAMING 顯示卡", "Price": 8390, "Category": 3, "Desc": "顯示晶片 AMD Radeon RX 480 ,記憶體 8GB GDDR5 ", "CreditCard": true }
+        ];
+
+        var myCategories = [
+            { Name: "", Id: 0 },
+            { Name: "SSD", Id: 1 },
+            { Name: "CPU", Id: 2 },
+            { Name: "VGA Card", Id: 3 }
+        ];
+
+        // 中文本地化 (jsgrid-zh-tw.js)
+        (function(jsGrid) {
+            jsGrid.locales["zh-tw"] = {
+                grid: {
+                    noDataContent: "暫無資料",
+                    deleteConfirm: "確認刪除？",
+                    pagerFormat: "頁碼: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} / {pageCount}",
+                    pagePrevText: "上一頁",
+                    pageNextText: "下一頁",
+                    pageFirstText: "第一頁",
+                    pageLastText: "最後一頁",
+                    loadMessage: "請稍候...",
+                    invalidMessage: "輸入資料不正確"
+                },
+                loadIndicator: {
+                    message: "載入中..."
+                },
+                fields: {
+                    control: {
+                        searchModeButtonTooltip: "切換為搜尋",
+                        insertModeButtonTooltip: "切換為新增",
+                        editButtonTooltip: "編輯",
+                        deleteButtonTooltip: "刪除",
+                        searchButtonTooltip: "搜尋",
+                        clearFilterButtonTooltip: "清除搜尋條件",
+                        insertButtonTooltip: "新增",
+                        updateButtonTooltip: "修改",
+                        cancelEditButtonTooltip: "取消編輯"
+                    }
+                },
+                validators: {
+                    required: { message: "欄位必填AAAA" },
+                    rangeLength: { message: "欄位字串長度超出範圍" },
+                    minLength: { message: "欄位字串長度太短" },
+                    maxLength: { message: "欄位字串長度太長" },
+                    pattern: { message: "欄位字串不符合規則" },
+                    range: { message: "欄位數值超出範圍" },
+                    min: { message: "欄位數值太小" },
+                    max: { message: "欄位數值太大" }
+                }
+            };
+        })(jsGrid, jQuery);
+
+        // Tab 切換功能
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // 初始化
+        $(document).ready(function() {
+            // 範例 1: 基本表格
+            $("#jsGrid1").jsGrid({
+                width: "100%",
+                height: "400px",
+                data: myProducts,
+                fields: [
+                    { name: "Name", type: "text", width: 150 },
+                    { name: "Price", type: "number", width: 50 },
+                    { name: "Desc", type: "text", width: 200 },
+                    { name: "Category", type: "select", items: myCategories, valueField: "Id", textField: "Name" },
+                    { name: "CreditCard", type: "checkbox", title: "UseCreditCard" }
+                ]
+            });
+
+            // 範例 2: 自訂行渲染
+            $("#jsGrid2").jsGrid({
+                width: "100%",
+                height: "400px",
+                data: myProducts,
+                rowRenderer: function(item) {
+                    var $name = $("<h3>").text(item.Name);
+                    var $desc = $("<p>").text(item.Desc);
+                    var $price = $("<p>").text(item.Price).css("color", "red");
+                    var $panel = $("<div>").css("border-width", "1").css("border-style", "solid").append($name).append($desc).append($price);
+                    return $panel;
+                },
+                fields: [
+                    { name: "Name", type: "text", width: 150 },
+                    { name: "Price", type: "text", width: 50 },
+                    { name: "Desc", type: "text", width: 200 },
+                    { name: "Category", type: "text", width: 50 },
+                    { name: "CreditCard", type: "text", width: 50 }
+                ]
+            });
+
+            // 範例 3: 編輯與分頁
+            $("#jsGrid3").jsGrid({
+                width: "100%",
+                height: "400px",
+                paging: true,
+                pageSize: 2,
+                pageIndex: 1,
+                inserting: true,
+                editing: true,
+                sorting: true,
+                data: myProducts,
+                fields: [
+                    { name: "Name", type: "text", width: 150, validate: "required" },
+                    { name: "Price", type: "number", width: 50 },
+                    { name: "Desc", type: "text", width: 200 },
+                    { name: "Category", type: "select", items: myCategories, valueField: "Id", textField: "Name" },
+                    { name: "CreditCard", type: "checkbox", title: "UseCreditCard", sorting: false },
+                    { type: "control" }
+                ]
+            });
+
+            // 範例 4: 簡單表格
+            $("#jsGrid4").jsGrid({
+                width: "100%",
+                height: "400px",
+                data: myProducts,
+                fields: [
+                    { name: "Name", type: "text", width: 150 },
+                    { name: "Price", type: "text", width: 50 },
+                    { name: "Desc", type: "text", width: 200 },
+                    { name: "Category", type: "text", width: 50 },
+                    { name: "CreditCard", type: "text", width: 50 }
+                ]
+            });
+
+            // 範例 5: 分頁載入 (模擬靜態資料)
+            $("#jsGrid5").jsGrid({
+                width: "100%",
+                height: "400px",
+                autoload: true,
+                paging: true,
+                pageLoading: true,
+                pageSize: 2,
+                pageIndex: 2,
+                fields: [
+                    { name: "Name", type: "text", width: 150 },
+                    { name: "Price", type: "text", width: 50 },
+                    { name: "Desc", type: "text", width: 200 },
+                    { name: "Category", type: "text", width: 50 },
+                    { name: "CreditCard", type: "text", width: 50 }
+                ],
+                controller: {
+                    loadData: function(filter) {
+                        var start = (filter.pageIndex - 1) * filter.pageSize;
+                        var end = start + filter.pageSize;
+                        var pagedData = myProducts.slice(start, end);
+                        return { data: pagedData, itemsCount: myProducts.length };
+                    }
+                }
+            });
+
+            // 範例 6: 基本編輯
+            $("#jsGrid6").jsGrid({
+                width: "100%",
+                height: "400px",
+                inserting: true,
+                editing: true,
+                sorting: true,
+                paging: true,
+                pageSize: 2,
+                pageButtonCount: 2,
+                data: myProducts,
+                fields: [
+                    { name: "Name", type: "text", width: 150, validate: "required" },
+                    { name: "Price", type: "number", width: 50 },
+                    { name: "Desc", type: "text", width: 200 },
+                    { name: "Category", type: "select", items: myCategories, valueField: "Id", textField: "Name" },
+                    { name: "CreditCard", type: "checkbox", title: "UseCreditCard", sorting: false },
+                    { type: "control" }
+                ]
+            });
+
+            // 範例 7: 中文本地化
+            jsGrid.locale("zh-tw"); //可註解這行就知道功能
+            $("#jsGrid7").jsGrid({
+                width: "100%",
+                height: "400px",
+                inserting: true,
+                editing: true,
+                sorting: true,
+                paging: true,
+                pageSize: 2,
+                pageButtonCount: 2,
+                data: myProducts,
+                fields: [
+                    { name: "Name", type: "text", width: 150, validate: "required" },
+                    { name: "Price", type: "number", width: 50 },
+                    { name: "Desc", type: "text", width: 200 },
+                    { name: "Category", type: "select", items: myCategories, valueField: "Id", textField: "Name" },
+                    { name: "CreditCard", type: "checkbox", title: "UseCreditCard", sorting: false },
+                    { type: "control" }
+                ]
+            });
+
+            // 預設顯示第一個 Tab
+            document.getElementById("defaultOpen").click();
+        });
+    </script>
+</body>
+</html>

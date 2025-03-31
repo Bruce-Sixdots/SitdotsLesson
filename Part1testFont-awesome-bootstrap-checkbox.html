@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkbox & Radio Button 範例</title>
+    <link href="font-awesome.css" rel="stylesheet" />
+    <link href="bootstrap.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #ccc;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        /* build.css 內容 */
+        .checkbox {
+            padding-left: 20px;
+        }
+        .checkbox label {
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            padding-left: 5px;
+        }
+        .checkbox label::before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            width: 17px;
+            height: 17px;
+            left: 0;
+            margin-left: -20px;
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            background-color: #fff;
+            -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+            -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+            transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+        }
+        .checkbox label::after {
+            display: inline-block;
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: 0;
+            top: 0;
+            margin-left: -20px;
+            padding-left: 3px;
+            padding-top: 1px;
+            font-size: 11px;
+            color: #555555;
+        }
+        .checkbox input[type="checkbox"],
+        .checkbox input[type="radio"] {
+            opacity: 0;
+            z-index: 1;
+            cursor: pointer;
+        }
+        .checkbox input[type="checkbox"]:focus + label::before,
+        .checkbox input[type="radio"]:focus + label::before {
+            outline: thin dotted;
+            outline: 5px auto -webkit-focus-ring-color;
+            outline-offset: -2px;
+        }
+        .checkbox input[type="checkbox"]:checked + label::after,
+        .checkbox input[type="radio"]:checked + label::after {
+            font-family: "FontAwesome";
+            content: "\f00c";
+        }
+        .checkbox input[type="checkbox"]:indeterminate + label::after,
+        .checkbox input[type="radio"]:indeterminate + label::after {
+            display: block;
+            content: "";
+            width: 10px;
+            height: 3px;
+            background-color: #555555;
+            border-radius: 2px;
+            margin-left: -16.5px;
+            margin-top: 7px;
+        }
+        .checkbox input[type="checkbox"]:disabled,
+        .checkbox input[type="radio"]:disabled {
+            cursor: not-allowed;
+        }
+        .checkbox input[type="checkbox"]:disabled + label,
+        .checkbox input[type="radio"]:disabled + label {
+            opacity: 0.65;
+        }
+        .checkbox input[type="checkbox"]:disabled + label::before,
+        .checkbox input[type="radio"]:disabled + label::before {
+            background-color: #eeeeee;
+            cursor: not-allowed;
+        }
+        .checkbox.checkbox-circle label::before {
+            border-radius: 50%;
+        }
+        .checkbox.checkbox-inline {
+            margin-top: 0;
+        }
+        .checkbox-primary input[type="checkbox"]:checked + label::before,
+        .checkbox-primary input[type="radio"]:checked + label::before {
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
+        .checkbox-primary input[type="checkbox"]:checked + label::after,
+        .checkbox-primary input[type="radio"]:checked + label::after {
+            color: #fff;
+        }
+        .checkbox-danger input[type="checkbox"]:checked + label::before,
+        .checkbox-danger input[type="radio"]:checked + label::before {
+            background-color: #d9534f;
+            border-color: #d9534f;
+        }
+        .checkbox-danger input[type="checkbox"]:checked + label::after,
+        .checkbox-danger input[type="radio"]:checked + label::after {
+            color: #fff;
+        }
+        .checkbox-info input[type="checkbox"]:checked + label::before,
+        .checkbox-info input[type="radio"]:checked + label::before {
+            background-color: #5bc0de;
+            border-color: #5bc0de;
+        }
+        .checkbox-info input[type="checkbox"]:checked + label::after,
+        .checkbox-info input[type="radio"]:checked + label::after {
+            color: #fff;
+        }
+        .checkbox-warning input[type="checkbox"]:checked + label::before,
+        .checkbox-warning input[type="radio"]:checked + label::before {
+            background-color: #f0ad4e;
+            border-color: #f0ad4e;
+        }
+        .checkbox-warning input[type="checkbox"]:checked + label::after,
+        .checkbox-warning input[type="radio"]:checked + label::after {
+            color: #fff;
+        }
+        .checkbox-success input[type="checkbox"]:checked + label::before,
+        .checkbox-success input[type="radio"]:checked + label::before {
+            background-color: #5cb85c;
+            border-color: #5cb85c;
+        }
+        .checkbox-success input[type="checkbox"]:checked + label::after,
+        .checkbox-success input[type="radio"]:checked + label::after {
+            color: #fff;
+        }
+        .checkbox-primary input[type="checkbox"]:indeterminate + label::before,
+        .checkbox-primary input[type="radio"]:indeterminate + label::before {
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
+        .checkbox-primary input[type="checkbox"]:indeterminate + label::after,
+        .checkbox-primary input[type="radio"]:indeterminate + label::after {
+            background-color: #fff;
+        }
+        .checkbox-danger input[type="checkbox"]:indeterminate + label::before,
+        .checkbox-danger input[type="radio"]:indeterminate + label::before {
+            background-color: #d9534f;
+            border-color: #d9534f;
+        }
+        .checkbox-danger input[type="checkbox"]:indeterminate + label::after,
+        .checkbox-danger input[type="radio"]:indeterminate + label::after {
+            background-color: #fff;
+        }
+        .checkbox-info input[type="checkbox"]:indeterminate + label::before,
+        .checkbox-info input[type="radio"]:indeterminate + label::before {
+            background-color: #5bc0de;
+            border-color: #5bc0de;
+        }
+        .checkbox-info input[type="checkbox"]:indeterminate + label::after,
+        .checkbox-info input[type="radio"]:indeterminate + label::after {
+            background-color: #fff;
+        }
+        .checkbox-warning input[type="checkbox"]:indeterminate + label::before,
+        .checkbox-warning input[type="radio"]:indeterminate + label::before {
+            background-color: #f0ad4e;
+            border-color: #f0ad4e;
+        }
+        .checkbox-warning input[type="checkbox"]:indeterminate + label::after,
+        .checkbox-warning input[type="radio"]:indeterminate + label::after {
+            background-color: #fff;
+        }
+        .checkbox-success input[type="checkbox"]:indeterminate + label::before,
+        .checkbox-success input[type="radio"]:indeterminate + label::before {
+            background-color: #5cb85c;
+            border-color: #5cb85c;
+        }
+        .checkbox-success input[type="checkbox"]:indeterminate + label::after,
+        .checkbox-success input[type="radio"]:indeterminate + label::after {
+            background-color: #fff;
+        }
+        .radio {
+            padding-left: 20px;
+        }
+        .radio label {
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            padding-left: 5px;
+        }
+        .radio label::before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            width: 17px;
+            height: 17px;
+            left: 0;
+            margin-left: -20px;
+            border: 1px solid #cccccc;
+            border-radius: 50%;
+            background-color: #fff;
+            -webkit-transition: border 0.15s ease-in-out;
+            -o-transition: border 0.15s ease-in-out;
+            transition: border 0.15s ease-in-out;
+        }
+        .radio label::after {
+            display: inline-block;
+            position: absolute;
+            content: " ";
+            width: 11px;
+            height: 11px;
+            left: 3px;
+            top: 3px;
+            margin-left: -20px;
+            border-radius: 50%;
+            background-color: #555555;
+            -webkit-transform: scale(0, 0);
+            -ms-transform: scale(0, 0);
+            -o-transform: scale(0, 0);
+            transform: scale(0, 0);
+            -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+            -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+            -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+            transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+        }
+        .radio input[type="radio"] {
+            opacity: 0;
+            z-index: 1;
+            cursor: pointer;
+        }
+        .radio input[type="radio"]:focus + label::before {
+            outline: thin dotted;
+            outline: 5px auto -webkit-focus-ring-color;
+            outline-offset: -2px;
+        }
+        .radio input[type="radio"]:checked + label::after {
+            -webkit-transform: scale(1, 1);
+            -ms-transform: scale(1, 1);
+            -o-transform: scale(1, 1);
+            transform: scale(1, 1);
+        }
+        .radio input[type="radio"]:disabled {
+            cursor: not-allowed;
+        }
+        .radio input[type="radio"]:disabled + label {
+            opacity: 0.65;
+        }
+        .radio input[type="radio"]:disabled + label::before {
+            cursor: not-allowed;
+        }
+        .radio.radio-inline {
+            margin-top: 0;
+        }
+        .radio-primary input[type="radio"] + label::after {
+            background-color: #337ab7;
+        }
+        .radio-primary input[type="radio"]:checked + label::before {
+            border-color: #337ab7;
+        }
+        .radio-primary input[type="radio"]:checked + label::after {
+            background-color: #337ab7;
+        }
+        .radio-danger input[type="radio"] + label::after {
+            background-color: #d9534f;
+        }
+        .radio-danger input[type="radio"]:checked + label::before {
+            border-color: #d9534f;
+        }
+        .radio-danger input[type="radio"]:checked + label::after {
+            background-color: #d9534f;
+        }
+        .radio-info input[type="radio"] + label::after {
+            background-color: #5bc0de;
+        }
+        .radio-info input[type="radio"]:checked + label::before {
+            border-color: #5bc0de;
+        }
+        .radio-info input[type="radio"]:checked + label::after {
+            background-color: #5bc0de;
+        }
+        .radio-warning input[type="radio"] + label::after {
+            background-color: #f0ad4e;
+        }
+        .radio-warning input[type="radio"]:checked + label::before {
+            border-color: #f0ad4e;
+        }
+        .radio-warning input[type="radio"]:checked + label::after {
+            background-color: #f0ad4e;
+        }
+        .radio-success input[type="radio"] + label::after {
+            background-color: #5cb85c;
+        }
+        .radio-success input[type="radio"]:checked + label::before {
+            border-color: #5cb85c;
+        }
+        .radio-success input[type="radio"]:checked + label::after {
+            background-color: #5cb85c;
+        }
+        input[type="checkbox"].styled:checked + label:after,
+        input[type="radio"].styled:checked + label:after {
+            font-family: 'FontAwesome';
+            content: "\f00c";
+        }
+        input[type="checkbox"].styled:checked + label::before,
+        input[type="radio"].styled:checked + label::before {
+            color: #fff;
+        }
+        input[type="checkbox"].styled:checked + label::after,
+        input[type="radio"].styled:checked + label::after {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Checkbox & Radio Button 範例</h1>
+    <p>點擊下方標籤切換不同範例</p>
+
+    <!-- 標籤按鈕 -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">範例 1: Checkbox 基本樣式</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab2')">範例 2: Radio 與 Checkbox 混用</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab3')">範例 3: 多色 Radio</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab4')">範例 4: 多色 Checkbox</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab5')">範例 5: CheckBoxList & RadioButtonList</button>
+    </div>
+
+    <!-- 範例 1: Checkbox 基本樣式 -->
+    <div id="Tab1" class="tabcontent">
+        <h2>範例 1: Checkbox 基本樣式</h2>
+        <div class="container">
+            <div class="checkbox checkbox-primary checkbox-inline">
+                <input id="Checkbox1" type="checkbox" class="styled" />
+                <label for="Checkbox1">Checkbox1</label>
+            </div>
+            <div class="checkbox checkbox-success checkbox-inline">
+                <input id="Checkbox2" type="checkbox" class="styled" />
+                <label for="Checkbox2">Checkbox2</label>
+            </div>
+            <hr />
+            <div class="checkbox checkbox-primary checkbox-circle">
+                <input id="Checkbox3" type="checkbox" class="styled" />
+                <label for="Checkbox3">Checkbox3</label>
+            </div>
+            <div class="checkbox checkbox-success checkbox-circle">
+                <input id="Checkbox4" type="checkbox" class="styled" />
+                <label for="Checkbox4">Checkbox4</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- 範例 2: Radio 與 Checkbox 混用 -->
+    <div id="Tab2" class="tabcontent">
+        <h2>範例 2: Radio 與 Checkbox 混用</h2>
+        <div>
+            <div class="radio radio-primary radio-inline">
+                <input id="radio1" type="radio" name="option1" value="1" />
+                <label for="radio1">radio1</label>
+            </div>
+            <div class="radio radio-success radio-inline">
+                <input id="radio2" type="radio" name="option1" value="2" />
+                <label for="radio2">radio2</label>
+            </div>
+            <hr />
+            <div class="checkbox checkbox-primary">
+                <input id="radio3" type="radio" name="option2" value="3" />
+                <label for="radio3">radio3</label>
+            </div>
+            <div class="checkbox checkbox-success">
+                <input id="radio4" type="radio" name="option2" value="4" />
+                <label for="radio4">radio4</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- 範例 3: 多色 Radio -->
+    <div id="Tab3" class="tabcontent">
+        <h2>範例 3: 多色 Radio</h2>
+        <div>
+            <div class="radio radio-primary">
+                <input id="radio1" type="radio" name="option1" value="1" />
+                <label for="radio1">radio1</label>
+            </div>
+            <div class="radio radio-success">
+                <input id="radio2" type="radio" name="option1" value="2" />
+                <label for="radio2">radio2</label>
+            </div>
+            <div class="radio radio-warning">
+                <input id="radio3" type="radio" name="option1" value="3" />
+                <label for="radio3">radio3</label>
+            </div>
+            <div class="radio radio-info">
+                <input id="radio4" type="radio" name="option1" value="4" />
+                <label for="radio4">radio4</label>
+            </div>
+            <div class="radio radio-danger">
+                <input id="radio5" type="radio" name="option1" value="5" />
+                <label for="radio5">radio5</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- 範例 4: 多色 Checkbox -->
+    <div id="Tab4" class="tabcontent">
+        <h2>範例 4: 多色 Checkbox</h2>
+        <div>
+            <div class="checkbox checkbox-primary">
+                <input id="Checkbox1" type="checkbox" class="styled" />
+                <label for="Checkbox1">Checkbox1</label>
+            </div>
+            <div class="checkbox checkbox-success">
+                <input id="Checkbox2" type="checkbox" class="styled" />
+                <label for="Checkbox2">Checkbox2</label>
+            </div>
+            <div class="checkbox checkbox-warning">
+                <input id="Checkbox3" type="checkbox" class="styled" />
+                <label for="Checkbox3">Checkbox3</label>
+            </div>
+            <div class="checkbox checkbox-info">
+                <input id="Checkbox4" type="checkbox" class="styled" />
+                <label for="Checkbox4">Checkbox4</label>
+            </div>
+            <div class="checkbox checkbox-danger">
+                <input id="Checkbox5" type="checkbox" class="styled" />
+                <label for="Checkbox5">Checkbox5</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- 範例 5: CheckBoxList & RadioButtonList -->
+    <div id="Tab5" class="tabcontent">
+        <h2>範例 5: CheckBoxList & RadioButtonList</h2>
+        <div class="container">
+            <div class="checkbox checkbox-danger">
+                <input id="CheckBoxList1_0" type="checkbox" />
+                <label for="CheckBoxList1_0">美國</label>
+            </div>
+            <div class="checkbox checkbox-danger">
+                <input id="CheckBoxList1_1" type="checkbox" />
+                <label for="CheckBoxList1_1">日本</label>
+            </div>
+            <div class="checkbox checkbox-danger">
+                <input id="CheckBoxList1_2" type="checkbox" />
+                <label for="CheckBoxList1_2">香港</label>
+            </div>
+            <div class="radio radio-danger">
+                <input id="RadioButtonList1_0" type="radio" name="RadioButtonList1" value="美國" />
+                <label for="RadioButtonList1_0">美國</label>
+            </div>
+            <div class="radio radio-danger">
+                <input id="RadioButtonList1_1" type="radio" name="RadioButtonList1" value="日本" />
+                <label for="RadioButtonList1_1">日本</label>
+            </div>
+            <div class="radio radio-danger">
+                <input id="RadioButtonList1_2" type="radio" name="RadioButtonList1" value="香港" />
+                <label for="RadioButtonList1_2">香港</label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab 切換功能
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // 預設顯示第一個 Tab
+        document.getElementById("defaultOpen").click();
+    </script>
+</body>
+</html>
