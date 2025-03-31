@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Validation 範例</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #ccc;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        .error {
+            border-color: red;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>jQuery Validation 範例</h1>
+    <p>點擊下方標籤切換不同範例</p>
+
+    <!-- 標籤按鈕 -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">範例 1: 基本驗證規則</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab2')">範例 2: 自訂身分證驗證</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab3')">範例 3: 條件驗證</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab4')">範例 4: HTML5 屬性驗證</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab5')">範例 5: 基本驗證與中文訊息</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab6')">範例 6: 下拉選單與多選驗證</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab7')">範例 7: 動態添加規則</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab8')">範例 8: 遠端驗證</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab9')">範例 9: 簡單驗證</button>
+    </div>
+
+    <!-- 範例 1: 基本驗證規則 -->
+    <div id="Tab1" class="tabcontent">
+        <h2>範例 1: 基本驗證規則</h2>
+        <form id="form1_Tab1">
+            Email: <input type="text" name="name1" id="txt1_Tab1" /><br />
+            Age: <input type="text" name="name2" id="txt2_Tab1" /><br />
+            Password: <input type="text" name="name3" id="txt3_Tab1" /><br />
+            Confirm Password: <input type="text" name="name4" id="txt4_Tab1" /><br />
+            Phone Number: <input type="text" name="name5" id="txt5_Tab1" /><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+
+    <!-- 範例 2: 自訂身分證驗證 -->
+    <div id="Tab2" class="tabcontent">
+        <h2>範例 2: 自訂身分證驗證</h2>
+        <form id="form1_Tab2">
+            身分證: <input type="text" name="myID" id="myID_Tab2" /><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+
+    <!-- 範例 3: 條件驗證 -->
+    <div id="Tab3" class="tabcontent">
+        <h2>範例 3: 條件驗證</h2>
+        <form id="form1_Tab3">
+            帳號: <input type="text" name="name1" id="txt1_Tab3" /><br />
+            <input type="checkbox" name="EDM" id="EDM_Tab3" /> <label for="EDM_Tab3">訂閱電子報</label><br />
+            Email: <input type="text" name="name2" id="txt2_Tab3" /><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+
+    <!-- 範例 4: HTML5 屬性驗證 -->
+    <div id="Tab4" class="tabcontent">
+        <h2>範例 4: HTML5 屬性驗證</h2>
+        <form id="form1_Tab4">
+            <input type="text" name="name1" required data-msg="該欄位必填" /><br />
+            <input type="text" name="name2" min="10" max="50" data-msg="請輸入10-50之間的數字" /><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+
+    <!-- 範例 5: 基本驗證與中文訊息 -->
+    <div id="Tab5" class="tabcontent">
+        <h2>範例 5: 基本驗證與中文訊息</h2>
+        <form id="form1_Tab5">
+            <input type="text" name="name1" required /><br />
+            <input type="text" name="name2" min="10" max="50" /><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+
+    <!-- 範例 6: 下拉選單與多選驗證 -->
+    <div id="Tab6" class="tabcontent">
+        <h2>範例 6: 下拉選單與多選驗證</h2>
+        <form id="form1_Tab6">
+            <label for="ddlNationality_Tab6">居住地</label>
+            <select name="ddlNationality" id="ddlNationality_Tab6">
+                <option value="">未選擇</option>
+                <option value="北部">北部</option>
+                <option value="中部">中部</option>
+                <option value="南部">南部</option>
+            </select><br />
+            <label><input type="radio" id="gender_male_Tab6" value="m" name="gender" /> Male</label>
+            <label><input type="radio" id="gender_female_Tab6" value="f" name="gender" /> Female</label>
+            <label for="gender" class="error"></label><br />
+            <div>Color:</div>
+            <input type="checkbox" name="color" id="color1_Tab6" /> <label for="color1_Tab6">red</label>
+            <input type="checkbox" name="color" id="color2_Tab6" /> <label for="color2_Tab6">blue</label>
+            <input type="checkbox" name="color" id="color3_Tab6" /> <label for="color3_Tab6">green</label>
+            <label for="color" class="error"></label><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+
+    <!-- 範例 7: 動態添加規則 -->
+    <div id="Tab7" class="tabcontent">
+        <h2>範例 7: 動態添加規則</h2>
+        <form id="form1_Tab7">
+            <input type="text" name="name1" id="txt1_Tab7" /><br />
+            <input type="text" name="name2" id="txt2_Tab7" /><br />
+            <input type="text" name="name3" id="txt3_Tab7" /><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+
+    <!-- 範例 8: 遠端驗證 -->
+    <div id="Tab8" class="tabcontent">
+        <h2>範例 8: 遠端驗證</h2>
+        <form id="form1_Tab8">
+            帳號: <input type="text" name="username" id="txt1_Tab8" /><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+
+    <!-- 範例 9: 簡單驗證 -->
+    <div id="Tab9" class="tabcontent">
+        <h2>範例 9: 簡單驗證</h2>
+        <form id="form1_Tab9">
+            <input type="text" name="name1" required /><br />
+            <input type="text" name="name2" min="10" max="50" /><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+
+    <script>
+        // 中文訊息 (messages_zh_TW.js)
+        jQuery.extend(jQuery.validator.messages, {
+            required: "這是必填字段",
+            remote: "請修正此字段",
+            email: "請輸入有效的電子郵件地址",
+            url: "請輸入有效的網址",
+            date: "請輸入有效的日期",
+            dateISO: "請輸入有效的日期 (YYYY-MM-DD)",
+            number: "請輸入有效的數字",
+            digits: "只能輸入數字",
+            creditcard: "請輸入有效的信用卡號碼",
+            equalTo: "你的輸入不相同",
+            extension: "請輸入有效的後綴",
+            maxlength: jQuery.validator.format("最多可以輸入 {0} 個字符"),
+            minlength: jQuery.validator.format("最少要輸入 {0} 個字符"),
+            rangelength: jQuery.validator.format("請輸入長度在 {0} 到 {1} 之間的字符串"),
+            range: jQuery.validator.format("請輸入範圍在 {0} 到 {1} 之間的數值"),
+            max: jQuery.validator.format("請輸入不大於 {0} 的數值"),
+            min: jQuery.validator.format("請輸入不小於 {0} 的數值")
+        });
+
+        // Tab 切換功能
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // 初始化
+        $(document).ready(function() {
+            // 範例 1: 基本驗證規則
+            $("#form1_Tab1").validate({
+                rules: {
+                    name1: { email: true },
+                    name2: { min: 20, max: 80 },
+                    name3: { minlength: 5, maxlength: 10 },
+                    name4: { equalTo: "#txt3_Tab1" },
+                    name5: { minlength: 5, digits: true }
+                }
+            });
+
+            // 範例 2: 自訂身分證驗證
+            $.validator.addMethod("myIDCheck", function(value, element) {
+                return /^[A-Za-z]{1}[0-9]{9}$/.test(value);
+            }, "身分證字號不正確");
+            $("#form1_Tab2").validate({
+                rules: { myID: { myIDCheck: true } }
+            });
+
+            // 範例 3: 條件驗證
+            $("#form1_Tab3").validate({
+                rules: {
+                    name1: {
+                        required: function() { return $("#txt2_Tab3").val() === ""; }
+                    },
+                    name2: {
+                        email: { depends: function() { return $("#EDM_Tab3").is(":checked"); } }
+                    }
+                }
+            });
+
+            // 範例 4: HTML5 屬性驗證
+            $("#form1_Tab4").validate();
+
+            // 範例 5: 基本驗證與中文訊息
+            $("#form1_Tab5").validate();
+
+            // 範例 6: 下拉選單與多選驗證
+            $("#form1_Tab6").validate({
+                rules: {
+                    ddlNationality: "required",
+                    gender: "required",
+                    color: { minlength: 2 }
+                },
+                messages: {
+                    ddlNationality: { required: "不可為'未選擇'" },
+                    color: { minlength: "至少選兩個" }
+                }
+            });
+
+            // 範例 7: 動態添加規則
+            $("#form1_Tab7").validate({
+                rules: {
+                    name1: "required",
+                    name2: { required: true }
+                },
+                messages: {
+                    name2: { required: "一定要填寫" }
+                }
+            });
+            $("#txt3_Tab7").rules("add", {
+                required: true,
+                messages: { required: "Required input" }
+            });
+
+            // 範例 8: 遠端驗證 (模擬)
+            $.validator.addMethod("remoteMock", function(value) {
+                const nameAry = ["Tony", "Bob", "Vivid", "Jerry"];
+                return !nameAry.some(name => name.toUpperCase() === value.toUpperCase());
+            }, "此帳號已經被註冊");
+            $("#form1_Tab8").validate({
+                rules: { username: { required: true, remoteMock: true } }
+            });
+
+            // 範例 9: 簡單驗證
+            $("#form1_Tab9").validate();
+
+            // 預設顯示第一個 Tab
+            document.getElementById("defaultOpen").click();
+        });
+    </script>
+</body>
+</html>
