@@ -1,0 +1,35 @@
+# --------------------
+# 忽略 .NET Core 自動產生的檔案
+# --------------------
+
+# 編譯輸出
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+**/publish/
+
+# 使用者設定檔
+*.user
+*.suo
+
+# 環境變量
+**/.env
+**/.env.*
+
+# 前端套件
+node_modules/
+dist/
+
+# 系統垃圾檔
+[Dd]esktop.ini
+[Tt]humbs.db
+ehthumbs.db
+*.DS_Store
+
+# --------------------
+# 保留 Static CataLog 所有檔案
+# --------------------
+!Static CataLog/
+!Static CataLog/**/*
+

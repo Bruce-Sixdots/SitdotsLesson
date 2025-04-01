@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Chart.js 圖表示範 - 一頁式分頁</title>
+    <script src="chart.js"></script>
+    <script src="utils.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #ccc;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        canvas {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chart.js 圖表示範</h1>
+    <p>點擊下方標籤切換不同圖表示範</p>
+
+    <!-- 標籤按鈕 -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">簡單折線圖</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab2')">圓餅圖與自訂工具提示</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab3')">柱狀圖</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab4')">折線圖與標題和圖例</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab5')">柱狀圖與動態數據</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab6')">多數據集折線圖</button>
+    </div>
+
+    <!-- 範例 1: 簡單折線圖 -->
+    <div id="Tab1" class="tabcontent">
+        <h2>範例 1: 簡單折線圖</h2>
+        <p>展示六個月的「上課人數」，數據隨機生成。</p>
+        <div style="width: 75%;">
+            <canvas id="chart1"></canvas>
+        </div>
+    </div>
+
+    <!-- 範例 2: 圓餅圖與自訂工具提示 -->
+    <div id="Tab2" class="tabcontent">
+        <h2>範例 2: 圓餅圖與自訂工具提示</h2>
+        <p>展示圓餅圖，並使用自訂工具提示顯示數據。</p>
+        <div style="width: 40%;">
+            <canvas id="chart2"></canvas>
+        </div>
+        <div id="myToolTip" style="position: absolute"><p></p></div>
+    </div>
+
+    <!-- 範例 3: 柱狀圖 -->
+    <div id="Tab3" class="tabcontent">
+        <h2>範例 3: 柱狀圖</h2>
+        <p>展示柱狀圖，使用固定數據。</p>
+        <div style="width: 75%;">
+            <canvas id="chart3"></canvas>
+        </div>
+    </div>
+
+    <!-- 範例 4: 折線圖與標題和圖例 -->
+    <div id="Tab4" class="tabcontent">
+        <h2>範例 4: 折線圖與標題和圖例</h2>
+        <p>展示折線圖，添加標題和互動圖例。</p>
+        <div style="width: 50%;">
+            <canvas id="chart4"></canvas>
+        </div>
+    </div>
+
+    <!-- 範例 5: 柱狀圖與動態數據 -->
+    <div id="Tab5" class="tabcontent">
+        <h2>範例 5: 柱狀圖與動態數據</h2>
+        <p>展示柱狀圖，使用模擬的動態數據。</p>
+        <div style="width: 75%;">
+            <canvas id="chart5"></canvas>
+        </div>
+    </div>
+
+    <!-- 範例 6: 多數據集折線圖 -->
+    <div id="Tab6" class="tabcontent">
+        <h2>範例 6: 多數據集折線圖</h2>
+        <p>展示「上課人數」和「新會員人數」兩個數據集。</p>
+        <div style="width: 50%;">
+            <canvas id="chart6"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Tab 切換功能
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // 預設顯示第一個 Tab
+        document.getElementById("defaultOpen").click();
+
+        // 範例 1: 簡單折線圖
+        var ctx1 = document.getElementById("chart1").getContext("2d");
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+                datasets: [{
+                    borderColor: chartColors.red,
+                    backgroundColor: chartColors.green,
+                    label: '上課人數',
+                    data: GetRandomNumbers(6),
+                    fill: true
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: { beginAtZero: true }
+                    }]
+                }
+            }
+        });
+
+        // 範例 2: 圓餅圖與自訂工具提示
+        var ctx2 = document.getElementById("chart2").getContext("2d");
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+                datasets: [{
+                    label: '上課人數',
+                    data: GetRandomNumbers(6),
+                    backgroundColor: GetColors(6)
+                }]
+            },
+            options: {
+                tooltips: {
+                    enabled: false,
+                    custom: function (tooltip) {
+                        var customTip = document.getElementById('myToolTip');
+                        if (tooltip.opacity === 0) {
+                            customTip.style.opacity = 0;
+                            return;
+                        }
+                        customTip.innerHTML = "<h1>" + tooltip.body[0].lines[0] + "人</h1>";
+                        customTip.style.opacity = 1;
+                        customTip.style.left = tooltip.caretX + 'px';
+                        customTip.style.top = tooltip.caretY + 'px';
+                    }
+                }
+            }
+        });
+
+        // 範例 3: 柱狀圖
+        var ctx3 = document.getElementById("chart3").getContext("2d");
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+                datasets: [{
+                    label: '上課人數',
+                    data: [12, 19, 4, 5, 8, 4],
+                    borderWidth: 1,
+                    backgroundColor: 'rgb(255, 159, 64)'
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: { beginAtZero: true }
+                    }]
+                }
+            }
+        });
+
+        // 範例 4: 折線圖與標題和圖例
+        var ctx4 = document.getElementById("chart4").getContext("2d");
+        new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+                datasets: [{
+                    borderColor: chartColors.red,
+                    backgroundColor: chartColors.red,
+                    label: '上課人數',
+                    data: GetRandomNumbers(6),
+                    fill: false
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Custom Chart Title',
+                    position: "left"
+                },
+                legend: {
+                    display: true,
+                    position: "left",
+                    onHover: function (event, legendItem) {
+                        alert("2018年Tips班每月開班人數");
+                    }
+                }
+            }
+        });
+
+        // 範例 5: 柱狀圖與動態數據
+        var ctx5 = document.getElementById("chart5").getContext("2d");
+        var countries = ["USA", "UK", "Canada", "Germany", "France"];
+        var counts = [10, 15, 8, 12, 5];
+        new Chart(ctx5, {
+            type: 'bar',
+            data: {
+                labels: countries,
+                datasets: [{
+                    label: '客戶人數',
+                    data: counts,
+                    borderWidth: 1,
+                    backgroundColor: GetRandomColors(5)
+                }]
+            }
+        });
+
+        // 範例 6: 多數據集折線圖
+        var ctx6 = document.getElementById("chart6").getContext("2d");
+        new Chart(ctx6, {
+            type: 'line',
+            data: {
+                labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+                datasets: [
+                    {
+                        label: '上課人數',
+                        borderColor: chartColors.red,
+                        backgroundColor: chartColors.red,
+                        data: GetRandomNumbers(6),
+                        fill: false
+                    },
+                    {
+                        label: '新會員人數',
+                        borderColor: chartColors.green,
+                        backgroundColor: chartColors.green,
+                        data: GetRandomNumbers(6),
+                        fill: false
+                    }
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
